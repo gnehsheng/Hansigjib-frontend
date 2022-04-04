@@ -64,11 +64,11 @@ a:active {
 }
 
 .mainPagePic {
-    width: 100%;
+    width: 70%;
 }
 
 .button {
-    background-color: #ff1c42;
+    background-color: #ff4240;
     border-radius: 5px;
     height: 50px;
     width: 300px;
@@ -77,13 +77,13 @@ a:active {
     justify-content: center;
     padding: 30px;
     color: white;
-    font-weight: 900;
-    font-size: 1em;
+    font-weight: 700;
+    font-size: 1.5em;
     cursor: pointer;
     margin: auto;
-    margin-bottom: 30px;
+    margin-top: 30px;
 }
 
 .button:hover {
-    background-color: lightslategrey;
+    background-color: red;
 }

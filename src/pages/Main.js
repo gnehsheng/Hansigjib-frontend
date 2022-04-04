@@ -12,15 +12,14 @@ export default function MainPage() {
 
     return (
         <>
-            <h2>Main Page</h2>
+            
+            <img className='mainPagePic' src={Placeholder} alt='placeholder' />
             <button className='button'
                 onClick={routeChange}
                 primary
             >
                 Order Now
             </button>
-            <img className='mainPagePic' src={Placeholder} alt='placeholder' />
-            
 
         </>
     )
