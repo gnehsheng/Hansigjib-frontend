@@ -11,6 +11,7 @@ import LoginPage from './pages/SignUpLogin';
 import Footer from './components/Footer';
 
 function App() {
+
   return (
     <>
       <BrowserRouter>
