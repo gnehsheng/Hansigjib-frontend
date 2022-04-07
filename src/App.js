@@ -1,6 +1,5 @@
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 
-import 'purecss/build/pure.css'
 import './style.css'
 import Navbar from './components/Navbar';
 import AccountPage from './pages/Account';

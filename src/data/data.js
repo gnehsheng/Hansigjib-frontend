@@ -2,8 +2,10 @@ import { useEffect, useState } from "react";
 import urlcat from "urlcat"
 import { BACKEND } from "../utils/utils";
 import axios from "axios"
+// import '../style/menu.css'
 
-export default function MenuPage() {
+
+export default function Menu() {
     const [menu, setMenu] = useState([])
 
     useEffect(() => {
@@ -25,15 +27,20 @@ export default function MenuPage() {
 
     return (
         <>
-            {menu.map((el) => (
-                <article className="menu-item">
-                        <h2>{el.name}</h2>
-                        <img src={el.img} alt={el.name} className="photo" />
-                        <p>{el.description}</p>
-                        <p>S${el.price}</p>
-                        <button>Add to cart</button>
-                </article>
-            ))}
-        </>
+        {menu.map((el) => (
+        <article className="menu-item">
+          <img src={el.img} alt={el.name} className="photo" />
+          <div className="item-info">
+            <header>
+              <h4>{el.name}</h4>
+              <h4 className="price">S${el.price}</h4>
+            </header>
+            <p className="item-text">{el.foodtype}</p>
+          </div>
+            
+        </article>
+        ))}
+        </>  
     )
+
 }
