@@ -5,6 +5,6 @@ const api = axios.create({
 })
 
 
-export const getAllMenu = () => api.get(`/menu`)
-export const getUsers = () => api.get(`/user`)
+export const GetAllMenu = () => api.get(`/menus`)
+
 
