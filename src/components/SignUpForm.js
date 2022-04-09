@@ -55,6 +55,7 @@ export default function SignUpForm() {
                     </div>
                     <input type='submit' value='SIGNUP' />
                 </div>
+                <button onClick={navigate('/signup')}>Sign Up here!</button>
             </form>
         </div>
     )
