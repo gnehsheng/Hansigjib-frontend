@@ -9,7 +9,7 @@ export default function Navbar() {
           <li /><Link to="/">Home</Link>
           <li /><Link to="/menu">Menu</Link>
           <li /><Link to="/account">Account</Link>
-          <li /><Link to="/user">Sign Up / Login</Link>
+          <li /><Link to="/login">Sign Up / Login</Link>
           <li className="cart"/><Link to="/cart">Cart</Link>
         </ul>
       

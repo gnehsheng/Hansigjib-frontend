@@ -1,11 +1,25 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
+import axios from 'axios'
+import urlcat from "urlcat"
+import { BACKEND } from "../utils/utils";
+import { useNavigate } from 'react-router-dom';
 
-function LoginForm({ Login, error}) {
-    const [details, setDetails] = useState({name: '', email: '', password: ''})
+function LoginForm({ error }) {
+    const [details, setDetails] = useState({ username: '', password: '' })
+    const navigate = useNavigate()
 
-    const submitHandler = e =>{
+    function submitHandler(e) {
         e.preventDefault()
-        Login(details)
+        axios.post(urlcat(BACKEND, "/user/login"),{
+            username: details.username,
+            password: details.password
+        })
+            .then((response) => {
+                if (response.status === 200) {
+                    navigate('/account')
+                }
+            }).catch((error) => console.log(error))
+
     }
 
     return (
@@ -14,16 +28,12 @@ function LoginForm({ Login, error}) {
                 <h2>Login</h2>
                 {(error !== '') ? (<div className='error'>{error}</div>) : ''}
                 <div className='form-group'>
-                    <label htmlFor='name'>Name:</label>
-                    <input type='name' name='name' id='name' onChange={e => setDetails({...details, name: e.target.value})} value={details.name} />
-                </div>
-                <div className='form-group'>
-                    <label htmlFor='email'>Email:</label>
-                    <input type='email' name='email' id='email' onChange={e => setDetails({...details, email: e.target.value})} value={details.email} />
+                    <label htmlFor='username'>Username:</label>
+                    <input type='username' name='username' id='username' onChange={e => setDetails({ ...details, username: e.target.value })} value={details.username} />
                 </div>
                 <div className='form-group'>
                     <label htmlFor='password'>Password:</label>
-                    <input type='password' name='password' id='password' onChange={e => setDetails({...details, password: e.target.value})} value={details.password} />
+                    <input type='password' name='password' id='password' onChange={e => setDetails({ ...details, password: e.target.value })} value={details.password} />
                 </div>
                 <input type='submit' value='LOGIN' />
             </div>
