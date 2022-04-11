@@ -3,36 +3,37 @@ import urlcat from "urlcat"
 import { BACKEND } from "../utils/utils";
 import axios from "axios"
 
-
 export default function MenuPage() {
- const [menu, setMenu] = useState([]);
-    const menuName = [];
-  useEffect(() => {
-      console.log(BACKEND)
-     axios.get(urlcat(BACKEND, "/menu"))
-     .then((response) => {
-         console.log(response.data[0])
-         response.data.forEach((el) => {
+    const [menu, setMenu] = useState([])
 
-            menuName.push(el.name)
-         })
-         setMenu(menuName)
-
-        })
-      .catch ((error) => console.log(error))
-  }, []);
+    useEffect(() => {
+        axios.get(urlcat(BACKEND, "/menu"))
+            .then((response) => {
+                let arr = []
+                response.data.map((el) => {
+                    arr.push({
+                        img: el.img,
+                        name: el.name,
+                        description: el.description,
+                        price: el.price,
+                        foodtype: el.foodtype
+                    })
+                })
+                setMenu(arr)
+            }).catch((error) => console.log(error))
+    }, []);
 
     return (
         <>
-        <h2>Menu</h2>
-       <ul>
-        {menu.map((el) => (
-
-           <li>{el}
-          </li>
-        ))}
-      </ul>
-        
+            {menu.map((el) => (
+                <article className="menu-item">
+                        <h2>{el.name}</h2>
+                        <img src={el.img} alt={el.name} className="photo" />
+                        <p>{el.description}</p>
+                        <p>S${el.price}</p>
+                        <button>Add to cart</button>
+                </article>
+            ))}
         </>
     )
 }
