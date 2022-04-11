@@ -1,15 +1,20 @@
 import { Route, Routes, BrowserRouter, Navigate, Outlet, useLocation } from 'react-router-dom';
 
-import './style.css'
+
 import Navbar from './components/Navbar';
 import AccountPage from './pages/Account';
 import CartPage from './pages/Cart';
 import MainPage from './pages/Main';
-import MenuPage from './pages/Menu';
 import LoginPage from './pages/Login';
 import Footer from './components/Footer';
 import SignUp from './pages/SignUp';
 import { useContext, createContext } from 'react';
+
+import { Header } from './components/Header';
+import { AboutUs } from './components/AboutUs';
+import { Menu } from './components/Menu';
+import './App.css'
+
 
 // import ProtectedRoute from './components/ProtectedRoutes';
 
@@ -31,13 +36,16 @@ function App() {
     <>
       <BrowserRouter>
         <Navbar />
+        <Header />
+        <AboutUs />
+        <Menu />
         <Routes>
           <Route path='/' element={<MainPage />} />
           <Route path='/' element={<PrivateRoutes />} >
             <Route path='/account' element={< AccountPage />} />
           </Route>
           <Route path='/cart' element={<CartPage />} />
-          <Route path='/menu' element={<MenuPage />} />
+          
           <Route path='/login' element={<LoginPage />} />
           <Route path='/signup' element={<SignUp />} />
         </Routes>

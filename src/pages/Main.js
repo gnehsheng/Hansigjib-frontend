@@ -1,6 +1,6 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import Placeholder from '../data/PLACEHOLDER.png'
+
 
 export default function MainPage() {
 
@@ -17,7 +17,8 @@ export default function MainPage() {
 
     return (
         <>
-            <img className='mainPagePic' src={Placeholder} alt='placeholder' />
+            {/* <img className='mainPagePic' src={Placeholder} alt='placeholder' /> */}
+            
             <button className='button'
                 onClick={routeChange}
                 primary>
