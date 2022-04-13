@@ -7,7 +7,7 @@ export default function AccountPage() {
     const [approved, setApproved] = useState()
     
     useEffect(() => {
-        axios.get(BACKEND, '/user/account')
+        axios.get(BACKEND, '/user/login')
         .then((res) => {
             console.log(res.data)
             setApproved(res.user)
@@ -17,7 +17,6 @@ export default function AccountPage() {
     return (
         <>
         <h2>Account</h2>
-        {approved}
         </>
     )
 }

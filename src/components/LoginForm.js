@@ -1,19 +1,22 @@
-import React, { useState } from 'react'
-import axios from 'axios'
+import React, { useState, useContext } from 'react'
+import useAuth from "../hooks/useAuth"
 import urlcat from "urlcat"
 import { BACKEND } from "../utils/utils";
 import { useNavigate } from 'react-router-dom';
+import axios from '../api/index';
+
 
 function LoginForm({ error }) {
+    const {setAuth} = useAuth();
     const [details, setDetails] = useState({ username: '', password: '' })
     const navigate = useNavigate()
 
     function submitHandler(e) {
         e.preventDefault()
-        axios.post(urlcat(BACKEND, "/user/login"),{
+        axios.post(urlcat(BACKEND, "/user/login"),JSON.stringify({
             username: details.username,
             password: details.password
-        })
+        }))
             .then((response) => {
                 if (response.status === 200) {
                     navigate('/account')
