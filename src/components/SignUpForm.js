@@ -21,7 +21,7 @@ export default function SignUpForm() {
         })
             .then(res => {
                 if (res.status === 200) {
-                    navigate('/account')
+                    navigate('/login')
                 }
                 return (
                     res.userDetails

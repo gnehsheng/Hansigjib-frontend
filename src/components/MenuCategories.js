@@ -1,20 +1,21 @@
 import React from 'react'
 
-export default function Categories({ categories, filterItems }) {
-  return (
-    <div className="btn-container">
-      {categories.map((category, index) => {
-        return (
-          <button
-            type="button"
-            className="filter-btn"
-            key={index}
-            onClick={() => filterItems(category)}
-          >
-            {category}
-          </button>
-        )
-      })}
-    </div>
-  )
+export const MenuCategories = ({ categories, filterItems, activeCategory }) => {
+    return (
+        <div className="btn-container">
+            {categories.map((category, index) => {
+                return (
+                    <button
+                        type="button"
+                        className={`${activeCategory === category ? "filter-btn active" : "filter-btn"
+                            }`}
+                        key={index}
+                        onClick={() => filterItems(category)}
+                    >
+                        {category}
+                    </button>
+                );
+            })}
+        </div>
+    )
 }

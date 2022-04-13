@@ -12,39 +12,40 @@ import { useContext, createContext } from 'react';
 
 import { Header } from './components/Header';
 import { AboutUs } from './components/AboutUs';
-import { Menu } from './components/Menu';
 import './App.css'
 
 
-// import ProtectedRoute from './components/ProtectedRoutes';
+import ProtectedRoute from './components/ProtectedRoutes';
+import MenuPage from './pages/MenuPage';
+
 
 function App() {
 
-  const PrivateRoutes = () => {
+  // const PrivateRoutes = () => {
 
-    const globalC = createContext()
-    const location = useLocation();
-    const { authLogin } = useContext(globalC);
-    console.log("authLogin", authLogin);
+  //   const globalC = createContext()
+  //   const location = useLocation();
+  //   const { authLogin } = useContext(globalC);
+   
+  //   console.log("authLogin", authLogin);
 
-    return authLogin
-      ? <Outlet />
-      : <Navigate to="/login" replace state={{ from: location }} />;
-  }
+  //   return authLogin ? <Outlet /> : <Navigate to="/login" replace state={{ from: location }} />;
+  // }
 
   return (
     <>
       <BrowserRouter>
         <Navbar />
-        <Header />
+        {/* <Header />
         <AboutUs />
-        <Menu />
+        <Menu /> */}
         <Routes>
           <Route path='/' element={<MainPage />} />
-          <Route path='/' element={<PrivateRoutes />} >
+          {/* <Route path='/account' element={<PrivateRoutes />} > */}
             <Route path='/account' element={< AccountPage />} />
-          </Route>
+          {/* </Route> */}
           <Route path='/cart' element={<CartPage />} />
+          <Route path='/menu' element={<MenuPage />} />
           
           <Route path='/login' element={<LoginPage />} />
           <Route path='/signup' element={<SignUp />} />
