@@ -13,12 +13,17 @@ function LoginForm({ error }) {
 
     function submitHandler(e) {
         e.preventDefault()
-        axios.post(urlcat(BACKEND, "/user/login"),JSON.stringify({
+        axios.post(urlcat(BACKEND, "/user/login"),{
             username: details.username,
             password: details.password
-        }))
+        })
             .then((response) => {
+                
                 if (response.status === 200) {
+                    console.log("session", response.headers)
+                    console.log("details", details)
+                   // setAuth(req.session.isAuthenticated)
+                   setAuth({username: true})
                     navigate('/account')
                 }
             }).catch((error) => console.log(error))

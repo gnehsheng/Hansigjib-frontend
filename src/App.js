@@ -8,7 +8,6 @@ import MainPage from './pages/Main';
 import LoginPage from './pages/Login';
 import Footer from './components/Footer';
 import SignUp from './pages/SignUp';
-import { AuthProvider } from './context/AuthProvider'
 
 import { useContext, createContext } from 'react';
 import { Route, Routes, BrowserRouter, Navigate, Outlet, useOutletContext, useLocation } from 'react-router-dom';
@@ -52,7 +51,7 @@ function App() {
           <Route path='/menu' element={<Menu />} />
           
            {/* Private Routes */}
-         <Route element={<RequireAuth />}>
+         <Route element={<RequireAuth/>}>
           <Route path='/account' element={< AccountPage />} />
          </Route>
         </Routes>
