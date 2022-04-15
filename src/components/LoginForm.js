@@ -4,26 +4,32 @@ import urlcat from "urlcat"
 import { BACKEND } from "../utils/utils";
 import { useNavigate } from 'react-router-dom';
 import axios from '../api/index';
-
+import AuthContext from '../context/AuthProvider';
+import { useCookies } from "react-cookie"
 
 function LoginForm({ error }) {
     const {setAuth} = useAuth();
     const [details, setDetails] = useState({ username: '', password: '' })
     const navigate = useNavigate()
+    const dataContext = useContext(AuthContext)
+    const [cookies, setCookies] = useCookies(['name'])
 
     function submitHandler(e) {
         e.preventDefault()
         axios.post(urlcat(BACKEND, "/user/login"),{
+            credentials: 'include',
             username: details.username,
             password: details.password
         })
             .then((response) => {
                 
                 if (response.status === 200) {
-                    console.log("session", response.headers)
-                    console.log("details", details)
-                   // setAuth(req.session.isAuthenticated)
-                   setAuth({username: true})
+                    console.log("AuthContext", dataContext)
+                    setCookies()
+                  //  console.log("session", response.headers)
+                    //console.log("details", details)
+                   setAuth({result:true})
+                   console.log("document", document.cookie)
                     navigate('/account')
                 }
             }).catch((error) => console.log(error))

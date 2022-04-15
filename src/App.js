@@ -20,21 +20,10 @@ import './App.css'
 
 
 import ProtectedRoutes from './components/ProtectedRoutes';
-const Context = React.createContext({})
+import AuthContext from './context/AuthProvider';
+import {useCookies} from "react-cookie"
 
 function App() {
-
-  // const PrivateRoutes = () => {
-
-  //   const outlet = useOutlet()
-  //   return (
-  //     <Context.Provider value={{foo: 'bar'}}>
-  //       <h1>Account</h1>
-  //       {outlet}
-  //     </Context.Provider>
-  //   )
-  // }
-
   return (
     <>
       <BrowserRouter>
@@ -51,9 +40,9 @@ function App() {
           <Route path='/menu' element={<Menu />} />
           
            {/* Private Routes */}
-         <Route element={<RequireAuth/>}>
+       <Route element={<RequireAuth/>}>
           <Route path='/account' element={< AccountPage />} />
-         </Route>
+          </Route>
         </Routes>
         <Footer />
       </BrowserRouter>
