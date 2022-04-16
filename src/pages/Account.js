@@ -4,27 +4,13 @@ import { BACKEND } from '../utils/utils'
 
 export default function AccountPage() {
 
-    // const [approved, setApproved] = useState()
-    
-    // useEffect(() => {
-    //     axios.get(BACKEND, '/user/account')
-    //     .then((res) => {
-    //         console.log(res.data)
-    //         setApproved(res.user)
-    //     }).catch((error) => console.log(error))
-    // })
+	console.log('document', document.cookie);
 
-    // useEffect(() => {
-    //     axios.get(BACKEND, '/user/login')
-    //     .then((res) => {
-    //         console.log(res.data)
-    //         setApproved(res.user)
-    //     }).catch((error) => console.log(error))
-    // })
-// console.log("AuthContext", dataContext)
+ 
     return (
         <>
         <h2>Account</h2>
+
         {/* {approved} */}
         </>
     )

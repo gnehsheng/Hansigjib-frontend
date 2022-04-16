@@ -2,11 +2,11 @@ import React, { useState, useContext } from 'react';
 import useAuth from '../hooks/useAuth';
 
 import AuthContext from '../context/AuthProvider';
-import { useCookies } from 'react-cookie';
+import { cookie, useCookies } from 'react-cookie';
 import axios from 'axios';
 import urlcat from 'urlcat';
 import { BACKEND } from '../utils/utils';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function LoginForm({ error }) {
 	const { setAuth } = useAuth();
@@ -17,39 +17,39 @@ function LoginForm({ error }) {
 
 	function submitHandler(e) {
 		e.preventDefault();
-		axios.post(
-				urlcat (BACKEND, '/user/login'),
+		axios
+			.post(
+				urlcat(BACKEND, '/user/login'),
 				{
 					username: details.username,
 					password: details.password
 				},
 				{
 					withCredentials: true,
-                    credentials: 'include'
+					credentials: 'include'
 				}
 			)
 			.then((response) => {
 				if (response.status === 200) {
-					/* Context Part */
-					//console.log("AuthContext", dataContext)
-
-					/* Cookies part */
-					//setCookies()
-					//console.log("session", response.headers)
-					//console.log("details", details)
-					setAuth({ result: true });
-					// console.log('document', document.cookie);
+					
+                    /* Cookies part */
+                    console.log("setting cookie");
+                    document.cookie = "user=" + details.username
+                    console.log("document: ", document.cookie);
+		
+					//setAuth({ result: true });
+                    setAuth(document.cookie)
 					navigate('/account');
 				}
 			})
 			.catch((error) => console.log(error));
-
 	}
 
 	return (
-		<form onSubmit={submitHandler}>
+        <>		<form onSubmit={submitHandler}>
 			<div className="form-inner">
-				<h2>Login</h2>
+				<h2>Login</h2>        <button><Link to="/signup">SIGN UP</Link></button>
+
 				{error !== '' ? <div className="error">{error}</div> : ''}
 				<div className="form-group">
 					<label htmlFor="username">Username:</label>
@@ -74,6 +74,8 @@ function LoginForm({ error }) {
 				<input type="submit" value="LOGIN" />
 			</div>
 		</form>
+        </>
+
 	);
 }
 
