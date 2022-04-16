@@ -1,7 +1,6 @@
 import axios from 'axios'
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState } from 'react'
 import { BACKEND } from '../utils/utils'
-import AuthContext from '../context/AuthProvider'
 
 export default function AccountPage() {
 

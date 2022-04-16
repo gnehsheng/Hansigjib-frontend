@@ -17,28 +17,50 @@ import { CartProvider } from 'react-use-cart'
 import { MenuPage2 } from './pages/MenuPage2';
 // import './App.css'
 
+import { Header } from './components/Header';
+import { AboutUs } from './components/AboutUs';
+import { Menu } from './components/Menu';
+import './App.css'
+
+
+import ProtectedRoutes from './components/ProtectedRoutes';
+const Context = React.createContext({})
 
 function App() {
 
+  // const PrivateRoutes = () => {
+
+  //   const outlet = useOutlet()
+  //   return (
+  //     <Context.Provider value={{foo: 'bar'}}>
+  //       <h1>Account</h1>
+  //       {outlet}
+  //     </Context.Provider>
+  //   )
+  // }
 
   return (
     <>
-      <CartProvider>
-        <BrowserRouter>
-          <Navbar />
-          <Routes>
-            <Route path='/' element={<MainPage />} />
-            {/* <Route path='/account' element={<PrivateRoutes />} > */}
-            <Route path='/account' element={< AccountPage />} />
-            {/* </Route> */}
-            <Route path='/cart' element={<CartPage />} />
-            <Route path='/menu' element={<MenuPage2 />} />
-            <Route path='/login' element={<LoginPage />} />
-            <Route path='/signup' element={<SignUp />} />
-          </Routes>
-          <Footer />
-        </BrowserRouter>
-      </CartProvider>
+      <BrowserRouter>
+        <Navbar />
+        {/* <Header />
+        <AboutUs />
+        <Menu /> */}
+        <Routes>
+          {/* Public Routes */}
+          <Route path='/' element={<MainPage />} />
+          <Route path='/cart' element={<CartPage />} />
+          <Route path='/login' element={<LoginPage />} />
+          <Route path='/signup' element={<SignUp />} />
+          <Route path='/menu' element={<Menu />} />
+          
+           {/* Private Routes */}
+         <Route element={<RequireAuth/>}>
+          <Route path='/account' element={< AccountPage />} />
+         </Route>
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </>
   );
 }
