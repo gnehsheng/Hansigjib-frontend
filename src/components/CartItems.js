@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useCart } from 'react-use-cart'
+import axios from 'axios';
+import urlcat from 'urlcat';
+import { BACKEND } from '../utils/utils';
 
 export default function CartItems() {
 
@@ -13,6 +16,23 @@ export default function CartItems() {
         removeItem,
         emptyCart,
     } = useCart()
+
+
+    function submitForm(items) {
+      
+        axios.post(urlcat(BACKEND, '/transaction/create'), {
+            items: items
+
+        })
+            .then((res) => {
+                if (res.status === '200') {
+                    
+                }
+            })
+            .catch((error) => console.log(error));
+    }
+
+
 
     if (isEmpty) return <h1 className='text-center'>Your cart is empty</h1>
 
@@ -52,7 +72,7 @@ export default function CartItems() {
                     <button className='btn btn-danger ms-2' onClick={() => emptyCart()}
                     >Clear Cart
                     </button>
-                    <button className='btn btn-sucess ms-2'>Send Order</button>
+                    <button className='btn btn-primary ms-2' onClick={() => submitForm(items)}>Send Order</button>
                 </div>
 
 

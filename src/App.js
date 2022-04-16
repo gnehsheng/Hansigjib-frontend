@@ -11,6 +11,7 @@ import MainPage from './pages/Main';
 import LoginPage from './pages/Login';
 import SignUp from './pages/SignUp';
 import MenuPage from './pages/MenuPage';
+import OrderConfirmation from "./pages/OrderConfirmation";
 import './App.css'
 
 function App() {
@@ -27,10 +28,12 @@ function App() {
             <Route path='/login' element={<LoginPage />} />
             <Route path='/signup' element={<SignUp />} />
             <Route path='/menu' element={<MenuPage />} />
+            <Route path='/transaction' element={<OrderConfirmation />} />
 
             {/* Private Routes */}
             <Route element={<RequireAuth />}>
               <Route path='/account' element={< AccountPage />} />
+              
             </Route>
           </Routes>
           <Footer />
