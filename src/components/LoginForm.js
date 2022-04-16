@@ -38,7 +38,7 @@ function LoginForm({ error }) {
 					//console.log("session", response.headers)
 					//console.log("details", details)
 					setAuth({ result: true });
-					console.log('document', document.cookie);
+					// console.log('document', document.cookie);
 					navigate('/account');
 				}
 			})
