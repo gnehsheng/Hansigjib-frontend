@@ -4,7 +4,7 @@ import image from '../data/placeholder.png'
 
 import '../style/main.css'
 
-export const MainPage = () => {
+export default function MainPage() {
 
     const navigate = useNavigate ();
     const routeChange = () => {

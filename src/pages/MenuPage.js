@@ -1,39 +1,29 @@
-// import React, { useState } from 'react'
-// import items from '../data/data'
-// import { MenuCategories } from '../components/MenuCategories'
-// import MenuItems from '../components/MenuItems'
-// import '../style/menu.css'
+import React from 'react'
+import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import MenuItemCard from '../components/MenuItemCard'
+import data from '../data/data'
 
-// const allCategories = ['all', ...new Set(items.map((item) => item.foodtype))]
+export default function MenuPage() {
 
-// export default function MenuPage() {
+    return (
+        <div>
+            <h1 className='text-center mt-3'>MENU</h1>
+            <section className='py-4 container'>
+                <div className='row justify-content-center'>
+                    {data.productData.map((item, index) => {
+                        return (
+                            <MenuItemCard img={item.img}
+                                name={item.name}
+                                description={item.description}
+                                price={item.price}
+                                item={item}
+                                quantity={item.quantity}
+                                key={index} />
+                        )
+                    })}
+                </div>
+            </section>
 
-//   const [menuItems, setMenuItems] = useState(items);
-//   const [activeCategory, setActiveCategory] = useState("");
-//   const [categories, setCategories] = useState(allCategories);
-
-//   const filterItems = (foodtype) => {
-//     setActiveCategory(foodtype);
-//     if (foodtype === "all") {
-//       setMenuItems(items);
-//       return;
-//     }
-//     const newItems = items.filter((item) => item.foodtype === foodtype);
-//     setMenuItems(newItems);
-//   };
-
-//   return (
-//     <div className="btn-container">
-//       <main>
-//         <section className='menu-section'>
-//           <div className='menu-title'>
-//             <h2>Menu</h2>
-//             <div className='underline'></div>
-//           </div>
-//           <MenuCategories categories={categories} activeCategory={activeCategory} filterItems={filterItems} />
-//           <MenuItems items={menuItems} />
-//         </section>
-//       </main>
-//     </div>
-//   )
-// }
+        </div>
+    )
+}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { useCart } from 'react-use-cart'
 
-export const CartItems = () => {
+export default function CartItems() {
 
     const {
         isEmpty,
@@ -12,7 +12,7 @@ export const CartItems = () => {
         updateItemQuantity,
         removeItem,
         emptyCart,
-    } = useCart();
+    } = useCart()
 
     if (isEmpty) return <h1 className='text-center'>Your cart is empty</h1>
 

@@ -1,66 +1,41 @@
 
-import RequireAuth from './components/RequireAuth';
 import React from "react"
+import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { CartProvider } from 'react-use-cart';
+import RequireAuth from './components/RequireAuth';
 import Navbar from './components/Navbar';
+import Footer from './components/Footer';
 import AccountPage from './pages/Account';
 import CartPage from './pages/Cart';
-import { MainPage } from './pages/Main';
+import MainPage from './pages/Main';
 import LoginPage from './pages/Login';
-import Footer from './components/Footer';
 import SignUp from './pages/SignUp';
-import {BrowserRouter, Route, Routes} from "react-router-dom"
-
-import { useContext, createContext } from 'react';
-import ProtectedRoute from './components/ProtectedRoutes';
-
-import { CartProvider } from 'react-use-cart'
-import { MenuPage2 } from './pages/MenuPage2';
-// import './App.css'
-
-import { Header } from './components/Header';
-import { AboutUs } from './components/AboutUs';
-import { Menu } from './components/Menu';
+import MenuPage from './pages/MenuPage';
 import './App.css'
-
-
-import ProtectedRoutes from './components/ProtectedRoutes';
-const Context = React.createContext({})
 
 function App() {
 
-  // const PrivateRoutes = () => {
-
-  //   const outlet = useOutlet()
-  //   return (
-  //     <Context.Provider value={{foo: 'bar'}}>
-  //       <h1>Account</h1>
-  //       {outlet}
-  //     </Context.Provider>
-  //   )
-  // }
-
   return (
     <>
-      <BrowserRouter>
-        <Navbar />
-        {/* <Header />
-        <AboutUs />
-        <Menu /> */}
-        <Routes>
-          {/* Public Routes */}
-          <Route path='/' element={<MainPage />} />
-          <Route path='/cart' element={<CartPage />} />
-          <Route path='/login' element={<LoginPage />} />
-          <Route path='/signup' element={<SignUp />} />
-          <Route path='/menu' element={<Menu />} />
-          
-           {/* Private Routes */}
-         <Route element={<RequireAuth/>}>
-          <Route path='/account' element={< AccountPage />} />
-         </Route>
-        </Routes>
-        <Footer />
-      </BrowserRouter>
+      <CartProvider>
+        <BrowserRouter>
+          <Navbar />
+          <Routes>
+            {/* Public Routes */}
+            <Route path='/' element={<MainPage />} />
+            <Route path='/cart' element={<CartPage />} />
+            <Route path='/login' element={<LoginPage />} />
+            <Route path='/signup' element={<SignUp />} />
+            <Route path='/menu' element={<MenuPage />} />
+
+            {/* Private Routes */}
+            <Route element={<RequireAuth />}>
+              <Route path='/account' element={< AccountPage />} />
+            </Route>
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </CartProvider>
     </>
   );
 }
