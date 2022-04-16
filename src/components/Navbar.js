@@ -36,9 +36,9 @@ export default function Navbar() {
           <div className='app__navbar-smallscreen_overlay flex__center slide-bottom'>
             <MdOutlineRestaurantMenu fontSize={27} className="overlay__close" onClick={() => setToggleMenu(false)} />
             <ul className="app__navbar-smallscreen_links">
-              <li className="p__opensans"><Link to="/">Home</Link></li>
-              <li className="p__opensans"><Link to="/menu">Menu</Link></li>
-              <li className="p__opensans"><Link to="/account">Account</Link></li>
+              <li className="p__opensans"onClick={() => setToggleMenu(false)}><Link to="/">Home</Link></li>
+              <li className="p__opensans"onClick={() => setToggleMenu(false)}><Link to="/menu">Menu</Link></li>
+              <li className="p__opensans"onClick={() => setToggleMenu(false)}><Link to="/account">Account</Link></li>
             </ul>
           </div>
         )}
