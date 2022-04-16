@@ -3,14 +3,10 @@ import { useCart } from 'react-use-cart'
 
 
 export const MenuItemCard = (props) => {
-    const { addItem, updateItemQuantity, } = useCart()
+    const { addItem, } = useCart()
 
     function addItemCart() {
         addItem(props.item)
-    }
-
-    function updateItemQty() {
-        updateItemQuantity(props.quantity + 1)
     }
 
     return (
@@ -24,7 +20,6 @@ export const MenuItemCard = (props) => {
                         <button class ='btn btn-success'
                         onClick={()=>{
                             addItemCart()
-                            updateItemQty()
                         }}
                         >Add to Cart
                         </button>
