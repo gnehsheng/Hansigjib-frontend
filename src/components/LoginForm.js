@@ -1,13 +1,12 @@
-import React, { useContext, useState } from 'react'
-import axios from 'axios'
-import urlcat from "urlcat"
-import { BACKEND } from "../utils/utils";
-import { useNavigate, Link } from 'react-router-dom';
-
+import React, { useState, useContext } from 'react';
 import useAuth from '../hooks/useAuth';
 
 import AuthContext from '../context/AuthProvider';
 import { useCookies } from 'react-cookie';
+import axios from 'axios';
+import urlcat from 'urlcat';
+import { BACKEND } from '../utils/utils';
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm({ error }) {
 	const { setAuth } = useAuth();
@@ -18,9 +17,8 @@ function LoginForm({ error }) {
 
 	function submitHandler(e) {
 		e.preventDefault();
-		axios
-			.post(
-				urlcat(BACKEND, '/user/login'),
+		axios.post(
+				urlcat (BACKEND, '/user/login'),
 				{
 					username: details.username,
 					password: details.password

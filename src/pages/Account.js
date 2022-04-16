@@ -5,8 +5,15 @@ import AuthContext from '../context/AuthProvider'
 
 export default function AccountPage() {
 
-    //const [approved, setApproved] = useState()
-       // const dataContext = useContext(AuthContext)
+    // const [approved, setApproved] = useState()
+    
+    // useEffect(() => {
+    //     axios.get(BACKEND, '/user/account')
+    //     .then((res) => {
+    //         console.log(res.data)
+    //         setApproved(res.user)
+    //     }).catch((error) => console.log(error))
+    // })
 
     // useEffect(() => {
     //     axios.get(BACKEND, '/user/login')
@@ -19,6 +26,7 @@ export default function AccountPage() {
     return (
         <>
         <h2>Account</h2>
+        {/* {approved} */}
         </>
     )
 }
