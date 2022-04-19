@@ -10,11 +10,11 @@ const RequireAuth = () => {
             //console.log("auth", auth)
 
     },[auth])
-     //console.log(auth)
+     console.log("cookie: " + auth)
      //console.log(auth != "user=")
     return(
         //auth?.result
-        auth != "user=" || auth == ""
+        auth != "" && auth != "user=" 
         ? <Outlet />
         : <Navigate to="/login" state={{from: location}} replace/>
     )

@@ -33,9 +33,9 @@ function LoginForm({ error }) {
 				if (response.status === 200) {
 					
                     /* Cookies part */
-                    console.log("setting cookie");
+                   // console.log("setting cookie");
                     document.cookie = "user=" + details.username
-                    console.log("document: ", document.cookie);
+                    //console.log("document: ", document.cookie);
 		
 					//setAuth({ result: true });
                     setAuth(document.cookie)
