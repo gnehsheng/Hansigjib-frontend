@@ -1,9 +1,16 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
 import urlcat from 'urlcat'
 import { BACKEND } from '../utils/utils'
 
 export default function Transactions() {
+
+    const navigate = useNavigate();
+    const routeChange = () => {
+        let path = `/`;
+        navigate(path);
+    }
 
     const [transaction, setTransaction] = useState({
         name: '',
@@ -11,7 +18,7 @@ export default function Transactions() {
         price: '',
     });
 
-    function submitForm()  {
+    function submitForm() {
         axios.post(urlcat(BACKEND, './transaction/create'), {
             name: transaction.name,
             quantity: transaction.quantity,
@@ -27,7 +34,7 @@ export default function Transactions() {
 
     return (
         <div>
-            <button onClick={()=> submitForm()}>TEST</button>
+            
         </div>
     )
 }

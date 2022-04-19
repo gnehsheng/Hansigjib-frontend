@@ -28,7 +28,7 @@ function App() {
             <Route path='/login' element={<LoginPage />} />
             <Route path='/signup' element={<SignUp />} />
             <Route path='/menu' element={<MenuPage />} />
-            <Route path='/transaction' element={<OrderConfirmation />} />
+            <Route path='/transaction/' element={<OrderConfirmation />} />
 
             {/* Private Routes */}
             <Route element={<RequireAuth />}>

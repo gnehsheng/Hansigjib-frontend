@@ -1,28 +1,40 @@
-import React from 'react'
-import { useCart } from 'react-use-cart'
-import Transactions from '../components/Transactions'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import urlcat from 'urlcat';
+import { BACKEND } from '../utils/utils';
 
 export default function OrderConfirmation() {
 
-    const {
-        isEmpty,
-        items,
-        totalItems,
-        cartTotal,
-    } = useCart()
+    const navigate = useNavigate();
+    const routeChange = () => {
+        let path = `/`;
+        navigate(path);
+    }
 
-    if (isEmpty) return <h1 className='text-center'>You have no past orders</h1>
+    const [transaction, setTransaction] = useState([])
+    const [transactionSum, setTransactionSum] = useState('')
+
+    useEffect(() => {
+        axios.get(urlcat(BACKEND, 'transaction'))
+            .then((res) => {
+                console.log(res.data.map((el)=> el._id))
+                // console.log(res.data)
+                // setTransactionSum(res.data[0].transactionCollection.forEach((el)))
+            }).catch((error) => console.log(error))
+    }, [])
 
     return (
         <div className='py-4 container'>
-            <div className='row justify-content-center'>
+            {/* <div className='row justify-content-center'>
+                <h1 className='row justify-content-center'>ORDER SUMMARY</h1>
                 <div className='col-12'>
-                    <h4>Total Items: {totalItems}</h4>
                     <table className='table table-light table-hover m-0'>
                         <tbody>
-                            {items.map((item, index) => {
+                            {transaction.map((item) => {
+
                                 return (
-                                    <tr key={index}>
+                                    <tr key='test'>
                                         <td>
                                             <img src={item.img} style={{ height: '6rem' }} alt={item.name} />
                                         </td>
@@ -36,11 +48,17 @@ export default function OrderConfirmation() {
                     </table>
                 </div>
                 <div className='col-auto ms-auto'>
-                    <h2>Total Price: S${cartTotal}</h2>
+                    <h2>Total Price: S${item.itemTotal}</h2>
+                </div>
+                <div className='col-auto'>
+                    <button className='btn btn-primary ms-2'
+                        onClick={routeChange}
+                    >Return to Home
+                    </button>
                 </div>
 
-            </div>
-        <Transactions />
-        </div>
+            </div> */}
+
+        </div >
     )
 }

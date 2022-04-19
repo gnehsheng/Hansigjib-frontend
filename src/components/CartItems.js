@@ -3,6 +3,7 @@ import { useCart } from 'react-use-cart'
 import axios from 'axios';
 import urlcat from 'urlcat';
 import { BACKEND } from '../utils/utils';
+import { useNavigate } from 'react-router-dom';
 
 export default function CartItems() {
 
@@ -17,23 +18,28 @@ export default function CartItems() {
         emptyCart,
     } = useCart()
 
+    const navigate = useNavigate();
+    const routeChange = () => {
+        let path = `/transaction`;
+        navigate(path);
+    }
 
     function submitForm(items) {
-      
+        
+
         axios.post(urlcat(BACKEND, '/transaction/create'), {
             items: items
-
         })
             .then((res) => {
-                if (res.status === '200') {
-                    
+                
+                if (res.status === 200) {
+                    routeChange(res.data.transaction_id)        
+                    // emptyCart()
                 }
             })
             .catch((error) => console.log(error));
     }
-
-
-
+    
     if (isEmpty) return <h1 className='text-center'>Your cart is empty</h1>
 
     return (
@@ -69,10 +75,10 @@ export default function CartItems() {
                     <h2>Total Price: S${cartTotal}</h2>
                 </div>
                 <div className='col-auto'>
-                    <button className='btn btn-danger ms-2' onClick={() => emptyCart()}
+                    <button className='btn btn-danger ms-2' onClick={emptyCart}
                     >Clear Cart
                     </button>
-                    <button className='btn btn-primary ms-2' onClick={() => submitForm(items)}>Send Order</button>
+                    <button className='btn btn-primary ms-2' onClick={()=>submitForm(items)}>Send Order</button>
                 </div>
 
 
