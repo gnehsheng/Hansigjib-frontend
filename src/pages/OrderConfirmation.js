@@ -1,11 +1,12 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState} from 'react'
+import { useNavigate, useParams } from 'react-router-dom';
 import urlcat from 'urlcat';
 import { BACKEND } from '../utils/utils';
 
 export default function OrderConfirmation() {
 
+    const id = useParams();
     const navigate = useNavigate();
     const routeChange = () => {
         let path = `/`;
@@ -16,17 +17,19 @@ export default function OrderConfirmation() {
     const [transactionSum, setTransactionSum] = useState('')
 
     useEffect(() => {
-        axios.get(urlcat(BACKEND, 'transaction'))
+        axios.get(urlcat(BACKEND, '/transaction/' + id.id))
             .then((res) => {
-                console.log(res.data.map((el)=> el._id))
-                // console.log(res.data)
-                // setTransactionSum(res.data[0].transactionCollection.forEach((el)))
+                console.log(id.id)
+                setTransaction(res.data.transactions)
+                console.log(res.data)
+                setTransactionSum(res.data.transactions.reduce((sum, {itemTotal}) => sum + itemTotal, 0))
             }).catch((error) => console.log(error))
     }, [])
 
+
     return (
         <div className='py-4 container'>
-            {/* <div className='row justify-content-center'>
+            <div className='row justify-content-center'>
                 <h1 className='row justify-content-center'>ORDER SUMMARY</h1>
                 <div className='col-12'>
                     <table className='table table-light table-hover m-0'>
@@ -48,7 +51,7 @@ export default function OrderConfirmation() {
                     </table>
                 </div>
                 <div className='col-auto ms-auto'>
-                    <h2>Total Price: S${item.itemTotal}</h2>
+                    <h2>Total Price: S${transactionSum}</h2>
                 </div>
                 <div className='col-auto'>
                     <button className='btn btn-primary ms-2'
@@ -57,7 +60,7 @@ export default function OrderConfirmation() {
                     </button>
                 </div>
 
-            </div> */}
+            </div>
 
         </div >
     )

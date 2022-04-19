@@ -34,7 +34,9 @@ export default function Navbar() {
       </ul>
 
       <div className="app__navbar-login">
-        {document.cookie === "user=" ? <Link to='/login' className="p__opensans">Sign Up / Login</Link> : <Link onClick={handleLogOut} className="p__opensans" to="/login">Logout</Link>}
+        {document.cookie !== "user=" && document.cookie !== "" 
+        ?  <Link onClick={handleLogOut} className="p__opensans" to="/login">Logout</Link> 
+        : <Link to='/login' className="p__opensans">Sign Up / Login</Link>}
         <div />
         <Link to='/cart' className="p__opensans">Cart</Link>
       </div>

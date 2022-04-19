@@ -19,8 +19,8 @@ export default function CartItems() {
     } = useCart()
 
     const navigate = useNavigate();
-    const routeChange = () => {
-        let path = `/transaction`;
+    const routeChange = (transID) => {
+        let path = `/transaction/` + transID;
         navigate(path);
     }
 
@@ -33,8 +33,9 @@ export default function CartItems() {
             .then((res) => {
                 
                 if (res.status === 200) {
-                    routeChange(res.data.transaction_id)        
-                    // emptyCart()
+                    routeChange(res.data.transaction_id)  
+                    console.log(res.data.transaction_id)      
+                    emptyCart()
                 }
             })
             .catch((error) => console.log(error));
