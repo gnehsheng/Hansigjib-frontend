@@ -26,7 +26,6 @@ export default function OrderConfirmation() {
             }).catch((error) => console.log(error))
     }, [])
 
-
     return (
         <div className='py-4 container'>
             <div className='row justify-content-center'>
@@ -35,7 +34,6 @@ export default function OrderConfirmation() {
                     <table className='table table-light table-hover m-0'>
                         <tbody>
                             {transaction.map((item) => {
-
                                 return (
                                     <tr key='test'>
                                         <td>
