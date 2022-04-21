@@ -26,16 +26,22 @@ export default function CartItems() {
 
     function submitForm(items) {
 
+        axios.post(urlcat(BACKEND, '/transaction/userTransaction'),
 
-        axios.post(urlcat(BACKEND, '/transaction/create'), {
-            items: items
-        })
+            {
+                items: items
+            },
+            {
+                withCredentials: true,
+
+            },
+        )
             .then((res) => {
 
                 if (res.status === 200) {
                     routeChange(res.data.transaction_id)
-                    console.log(res.data.transaction_id)
-                    emptyCart()
+
+                    // emptyCart()
                 }
             })
             .catch((error) => console.log(error));

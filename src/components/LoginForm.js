@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import useAuth from '../hooks/useAuth';
 import AuthContext from '../context/AuthProvider';
-import { cookie, useCookies } from 'react-cookie';
+// import { cookie, useCookies } from 'react-cookie';
 import axios from 'axios';
 import urlcat from 'urlcat';
 import { BACKEND } from '../utils/utils';
@@ -20,7 +20,7 @@ function LoginForm({ error }) {
 	}
 
 	const dataContext = useContext(AuthContext);
-	const [cookies, setCookies] = useCookies(['name']);
+	// const [cookies, setCookies] = useCookies(['name']);
 
 	function submitHandler(e) {
 		e.preventDefault();
@@ -31,19 +31,11 @@ function LoginForm({ error }) {
 					username: details.username,
 					password: details.password
 				},
-				{
-					withCredentials: true,
-					credentials: 'include'
-				}
+				
 			)
 			.then((response) => {
 				if (response.status === 200) {
-					/* Cookies part */
-					// console.log("setting cookie");
-					document.cookie = "user=" + details.username
-					//console.log("document: ", document.cookie);
-					//setAuth({ result: true });
-					setAuth(document.cookie)
+					setAuth({ result: true });
 					navigate('/account');
 				}
 			})
