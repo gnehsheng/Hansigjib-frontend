@@ -31,6 +31,9 @@ function LoginForm({ error }) {
 					username: details.username,
 					password: details.password
 				},
+				{
+					withCredentials: true
+				}
 				
 			)
 			.then((response) => {
