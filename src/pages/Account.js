@@ -3,17 +3,18 @@ import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import urlcat from 'urlcat';
 import { BACKEND } from '../utils/utils'
+import OrderConfirmation from './OrderConfirmation';
 
 export default function AccountPage() {
     //console.log('document', document.cookie);
     const [userRes, setUserRes] = useState([])
     const [deleteUser, setDeleteUser] = useState()
 
-    const navigate = useNavigate ();
-	const routeChange= () => {
-		let path = `/update`;
-		navigate(path);
-	}
+    const navigate = useNavigate();
+    const routeChange = () => {
+        let path = `/update`;
+        navigate(path);
+    }
 
     function deleteAccount() {
         axios.delete(urlcat(BACKEND, '/user/delete'),
@@ -27,9 +28,9 @@ export default function AccountPage() {
 
     useEffect(() => {
         axios.get(urlcat(BACKEND, './user/account'),
-        {
-            withCredentials: true
-        })
+            {
+                withCredentials: true
+            })
             .then((res) => {
                 setUserRes(res.data)
             })
@@ -58,7 +59,7 @@ export default function AccountPage() {
                                 </p>
                                 <button onClick={() => deleteAccount(deleteUser)}>Delete</button>
                             </div>
-
+                            {/* < OrderConfirmation /> */}
                         </div>
                     </div>
                 </div>

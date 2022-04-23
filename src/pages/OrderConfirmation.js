@@ -15,6 +15,7 @@ export default function OrderConfirmation() {
 
     const [transaction, setTransaction] = useState([])
     const [transactionSum, setTransactionSum] = useState('')
+    const [date, setDate] = useState('')
 
     useEffect(() => {
         console.log(id)
@@ -23,6 +24,7 @@ export default function OrderConfirmation() {
                 console.log(res)
                 setTransaction(res.data.transactions)
                 setTransactionSum(res.data.transactions.reduce((sum, {itemTotal}) => sum + itemTotal, 0))
+                setDate(res.data.createdAt)
             }).catch((error) => console.log(error))
     }, [])
 
@@ -45,6 +47,9 @@ export default function OrderConfirmation() {
                             })}
                         </tbody>
                     </table>
+                </div>
+                <div className='col-auto ms-auto'>
+                    <h2>{date}</h2>
                 </div>
                 <div className='col-auto ms-auto'>
                     <h2>Total Price: S${transactionSum}</h2>
