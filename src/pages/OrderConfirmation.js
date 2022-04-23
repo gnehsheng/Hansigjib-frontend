@@ -17,11 +17,11 @@ export default function OrderConfirmation() {
     const [transactionSum, setTransactionSum] = useState('')
 
     useEffect(() => {
+        console.log(id)
         axios.get(urlcat(BACKEND, '/transaction/' + id.id))
             .then((res) => {
-                console.log(id.id)
+                console.log(res)
                 setTransaction(res.data.transactions)
-                console.log(res.data)
                 setTransactionSum(res.data.transactions.reduce((sum, {itemTotal}) => sum + itemTotal, 0))
             }).catch((error) => console.log(error))
     }, [])
@@ -36,9 +36,7 @@ export default function OrderConfirmation() {
                             {transaction.map((item) => {
                                 return (
                                     <tr key='test'>
-                                        <td>
-                                            <img src={item.img} style={{ height: '6rem' }} alt={item.name} />
-                                        </td>
+                            
                                         <td>{item.name}</td>
                                         <td>S${item.price}</td>
                                         <td>{item.quantity}</td>

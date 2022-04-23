@@ -14,11 +14,19 @@ function LoginForm({ error }) {
 	const [details, setDetails] = useState({ username: '', password: '' });
 
 	const navigate = useNavigate();
-	const routeChange = () => {
+	const routeChangeSignup = () => {
 		let path = `/signup`;
 		navigate(path);
 	}
+	// const routeChangeLogin = (userId) => {
+	// 	let path = `/account/` + userId;
+	// 	navigate(path);
+	// }
 
+	const routeChangeLogin = (userId) => {
+		let path = `/account`;
+		navigate(path);
+	}
 	const dataContext = useContext(AuthContext);
 	// const [cookies, setCookies] = useCookies(['name']);
 
@@ -39,7 +47,7 @@ function LoginForm({ error }) {
 			.then((response) => {
 				if (response.status === 200) {
 					setAuth({ result: true });
-					navigate('/account');
+					routeChangeLogin(response.data._id)
 				}
 			})
 			.catch((error) => console.log(error));
@@ -83,7 +91,7 @@ function LoginForm({ error }) {
 							</div>
 							<div className="mt-3">
 								<p className="mb-0 text-muted">Need an account?</p>
-								<div className="btn btn-primary" onClick={routeChange}
+								<div className="btn btn-primary" onClick={routeChangeSignup}
 								>Sign up here!
 									<span className="fas fa-chevron-right ms-1" />
 								</div>

@@ -12,6 +12,7 @@ import LoginPage from './pages/Login';
 import SignUp from './pages/SignUp';
 import MenuPage from './pages/MenuPage';
 import OrderConfirmation from "./pages/OrderConfirmation";
+import Update from "./pages/Update";
 import './App.css'
 
 function App() {
@@ -33,7 +34,7 @@ function App() {
             {/* Private Routes */}
             <Route element={<RequireAuth />}>
               <Route path='/account' element={< AccountPage />} />
-              
+              <Route path='/update' element={< Update />} />
             </Route>
           </Routes>
           <Footer />
