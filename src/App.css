@@ -1,3 +1,4 @@
+
 .section__padding {
   padding: 4rem 6rem;
 }
@@ -8,18 +9,10 @@
   align-items: center;
 }
 
-.app__bg {
-  background: url('./assets/bg.png');
-  background-position: center;
-  background-size: cover;
-  background-repeat: repeat;
-  background-attachment: fixed;
-}
-
 .custom__button {
   background-color: var(--color-crimson);
     color: var(--color-black);
-    font-family: var(--font-base);
+    font-family:Arial, Helvetica, sans-serif;
     font-weight: 700;
     letter-spacing: 0.04em;
     line-height: 28px;
@@ -82,9 +75,6 @@
     line-height: 210px;
   }
 
-  .spoon__img {
-    width: 80px;
-  }
 }
 
 @media screen and (max-width: 1150px) {

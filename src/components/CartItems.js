@@ -40,7 +40,7 @@ export default function CartItems() {
 
                 if (res.status === 200) {
                     routeChange(res.data.transaction_id)
-                    // emptyCart()
+                    emptyCart()
                 }
             })
             .catch((error) => console.log(error));

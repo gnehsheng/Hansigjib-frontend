@@ -24,7 +24,7 @@ export default function OrderConfirmation() {
                 console.log(res)
                 setTransaction(res.data.transactions)
                 setTransactionSum(res.data.transactions.reduce((sum, {itemTotal}) => sum + itemTotal, 0))
-                setDate(res.data.createdAt)
+                setDate(res.data.createdAt.slice(0, 10))
             }).catch((error) => console.log(error))
     }, [])
 
@@ -35,9 +35,9 @@ export default function OrderConfirmation() {
                 <div className='col-12'>
                     <table className='table table-light table-hover m-0'>
                         <tbody>
-                            {transaction.map((item) => {
+                            {transaction.map((item, id) => {
                                 return (
-                                    <tr key='test'>
+                                    <tr key={id}>
                             
                                         <td>{item.name}</td>
                                         <td>S${item.price}</td>
