@@ -9,6 +9,7 @@ export default function AccountPage() {
     //console.log('document', document.cookie);
     const [userRes, setUserRes] = useState([])
     const [deleteUser, setDeleteUser] = useState()
+    const [transactionRes, setTransactionRes] = useState([])
 
     const navigate = useNavigate();
     const routeChange = () => {
@@ -24,6 +25,7 @@ export default function AccountPage() {
             .then((res) => {
                 setDeleteUser(res.data)
             })
+            .catch((error) => console.log(error));
     }
 
     useEffect(() => {
@@ -33,7 +35,10 @@ export default function AccountPage() {
             })
             .then((res) => {
                 setUserRes(res.data)
+                setTransactionRes(res.data.userTransaction)
+                console.log(res.data.userTransaction)
             })
+            .catch((error) => console.log(error));
     }, [])
 
     return (
@@ -57,6 +62,17 @@ export default function AccountPage() {
                                 <p className="mb-0 text-muted">
                                     Past Transactions
                                 </p>
+                                <h4>
+                                    {transactionRes.map((el) => {
+                                        return(
+                                            el.transactions.map((transaction)=> {
+                                                return(
+                                                    <p>{transaction.name}</p>
+                                                )
+                                            })
+                                        )
+                                    })}
+                                </h4>
                                 <button onClick={() => deleteAccount(deleteUser)}>Delete</button>
                             </div>
                             {/* < OrderConfirmation /> */}
