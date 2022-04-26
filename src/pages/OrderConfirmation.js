@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom';
 import urlcat from 'urlcat';
 import { BACKEND } from '../utils/utils';
@@ -18,12 +18,10 @@ export default function OrderConfirmation() {
     const [date, setDate] = useState('')
 
     useEffect(() => {
-        console.log(id)
         axios.get(urlcat(BACKEND, '/transaction/' + id.id))
             .then((res) => {
-                console.log(res)
                 setTransaction(res.data.transactions)
-                setTransactionSum(res.data.transactions.reduce((sum, {itemTotal}) => sum + itemTotal, 0))
+                setTransactionSum(res.data.transactions.reduce((sum, { itemTotal }) => sum + itemTotal, 0))
                 setDate(res.data.createdAt.slice(0, 10))
             }).catch((error) => console.log(error))
     }, [])
@@ -38,7 +36,7 @@ export default function OrderConfirmation() {
                             {transaction.map((item, id) => {
                                 return (
                                     <tr key={id}>
-                            
+
                                         <td>{item.name}</td>
                                         <td>S${item.price}</td>
                                         <td>{item.quantity}</td>

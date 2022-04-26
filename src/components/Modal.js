@@ -15,7 +15,6 @@ export default function Modal({ setOpenModal }) {
             })
             .then((res) => {
                 setTransactionRes(res.data.userTransaction)
-
             })
             .catch((error) => console.log(error));
     }, [])
@@ -35,20 +34,23 @@ export default function Modal({ setOpenModal }) {
                 <div className='col-12'>
                     <table className='table table-light table-hover m-0'>
                         <tbody>
-                            {transactionRes.map((item, id) => {
-                            
+                            {transactionRes.map((item) => {
                                 return (
-                                    <tr key={id}>
-                                        <td>{item.transactions.name}</td>
-                                        <td>S${item.transactions.price}</td>
-                                        <td>{item.transactions.quantity}</td>
-                                    </tr>
+                                    item.transactions.map((el, index) => {
+                                        return (
+                                            < tr key={index} >
+                                                <td>{el.name}</td>
+                                                <td>S${el.price}</td>
+                                                <td>{el.quantity}</td>
+                                            </tr>
+                                        )
+                                    })
                                 )
                             })}
                         </tbody>
                     </table>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }

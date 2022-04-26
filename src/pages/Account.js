@@ -12,6 +12,7 @@ export default function AccountPage() {
     const [deleteUser, setDeleteUser] = useState()
     const [transactionRes, setTransactionRes] = useState([])
     const [modalOpen, setModalOpen] = useState(false);
+    const [transactionSum, setTransactionSum] = useState('')
 
     const navigate = useNavigate();
     const routeChange = () => {
@@ -38,8 +39,9 @@ export default function AccountPage() {
             .then((res) => {
                 setUserRes(res.data)
                 setTransactionRes(res.data.userTransaction)
-                console.log(res.data.userTransaction)
-                
+
+               
+
             })
             .catch((error) => console.log(error));
     }, [])
@@ -76,18 +78,18 @@ export default function AccountPage() {
                             {transactionRes.map((el, index) => {
                                 return (
                                     <tr key={index}>
-                                        <td style={{cursor: 'pointer'}} onClick={()=>{setModalOpen(true)}}>{el.createdAt.slice(0, 10)}</td>
-                                        
+                                        <td style={{ cursor: 'pointer' }} onClick={() => { setModalOpen(true) }}>{el.createdAt.slice(0, 10)}</td>
+                                    
                                     </tr>
                                 )
                             })}
                         </tbody>
                     </table>
-                    
+
                 </div>
-                
+
             </div>
-            
+
         </div >
 
 
